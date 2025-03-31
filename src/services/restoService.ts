@@ -19,5 +19,15 @@ export interface Restaurant {
     }
 };
 
-const RESTO_API = "https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/G38AG";
+export const RESTO_API = "https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/G38AG";
 
+export const fetchRestoData = async(): Promise<Restaurant[]> => {
+    try {
+        const response = await axios.get(RESTO_API);
+        // console.log(response.data.restaurants);
+        return response.data.restaurants;
+    } catch (error) {
+        console.error('Error fetching restaurants ', error);
+        return [];
+    }
+}
