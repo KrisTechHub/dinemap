@@ -1,11 +1,12 @@
-import './App.css'
+import './App.css';
+import Home from './components/home';
 
 function App() {
 
   return (
     <>
       <div>
-        <p className='text-red-500'>SAMPLE</p>
+        <Home />
       </div>
     </>
   )
