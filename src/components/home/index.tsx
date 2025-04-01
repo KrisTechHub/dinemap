@@ -1,22 +1,52 @@
-import { useState } from "react"
+import { Bars3Icon } from "@heroicons/react/24/solid";
+import { useState } from "react";
 
+type HomeProps = {
+    postcode: string;
+    setPostcode: (postcode: string) => void;
+}
 
-const Home = () => {
-    const [ postcode, setPostcode ] = useState<string>("G38AG");
+const Home: React.FC<HomeProps> = ({ postcode, setPostcode }) => {
+    const [ inputValue, setInputValue ] = useState(postcode) 
 
-    const handleSubmit = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setPostcode(e.target.value)
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setPostcode(inputValue);
     }
 
   return (
-    <div className="flex justify-start items-center bg-amber-700 text-white rounded-2xl px-4 h-12">
-        <h1 className="text-xl font-medium">Restaurants around post code</h1>
-        <select name="postcode" id="postcode" value={postcode} onChange={handleSubmit}>postcode
+    <div className="flex justify-start items-center bg-amber-700 text-white rounded-2xl px-4 gap-3 min-h-14">
+        <Bars3Icon className="w-8" />
+        <div className="flex gap-4">
+            <h1 className="text-xl font-medium">Restaurants around {postcode} </h1>
+            <form onSubmit={handleSubmit}>
+                <input type="text"  onChange={handleInputChange} placeholder="Enter postcode" className="px-1 border-1 border-gray-50 rounded-md w-30"  />
+                <button>Search</button>
+            </form>
+        </div>
+        {/* <select className="text-black" name="postcode" id="postcode" value={postcode} onChange={handleSubmit}>postcode
             <option value="CT12EH">CT12EH</option>
             <option value="SW1A1AA">SW1A1AA</option>
-
-        </select>
-        {/* <button type="submit" onClick={handleSubmit}>Submit</button> */}
+            <option value="CT12EH">CT12EH</option>
+            <option value="BN11AE">BN11AE</option>
+            <option value="PL40DW">PL40DW</option>
+            <option value="BS14DJ">BS14DJ</option>
+            <option value="CF118AZ">CF118AZ</option>
+            <option value="CB74DL">CB74DL</option>
+            <option value="B263QJ">B263QJ</option>
+            <option value="L40TH">L40TH</option>
+            <option value="M160RA">M160RA</option>
+            <option value="LS27HY">LS27HY</option>
+            <option value="DH45QZ">DH45QZ</option>
+            <option value="NE97TY">NE97TY</option>
+            <option value="EH11RE">EH11RE</option>
+            <option value="BT71NN">BT71NN</option>
+            
+        </select> */}
     </div>
   )
 }

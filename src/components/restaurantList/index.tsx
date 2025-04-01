@@ -1,25 +1,12 @@
-import { useState, useEffect } from "react";
-import { fetchRestoData, Restaurant } from "../../services/restoService";
+import { Restaurant } from "../../services/restoService";
 import { StarIcon } from "@heroicons/react/24/solid";
 
-const RestaurantList = () => {
-    const [ restaurants, setRestaurants] = useState<Restaurant[]>([]);
-    const [ error, setError ] = useState("");
+type RestaurantListProps = {
+    restaurants: Restaurant[];
+    error: string;
+}
 
-    useEffect(() => {
-        const getRestaurants = async() => {
-            try {
-                const data = await fetchRestoData();
-                // console.log(data);
-                setRestaurants(Array.isArray(data) ? data : [])
-            } catch (error) {
-                console.log(error);
-                setError(`${error}`)
-            }
-        };
-
-        getRestaurants();
-    })
+const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) => {
 
     return (
         <div className="bg-gray-50 p-6">
@@ -27,7 +14,7 @@ const RestaurantList = () => {
                 <p className="text-red-600"> {error} </p>
             }
 
-            { restaurants && restaurants.slice(0, 10).map((resto) => (
+            { restaurants.length > 0 ? restaurants.slice(0, 10).map((resto) => (
                 <div key={resto.id} className="bg-white p-6 m-4 rounded-xl hover:bg-gray-50/20 border-1 border-gray-200 hover:cursor-pointer">
                     <div>
 
@@ -58,7 +45,9 @@ const RestaurantList = () => {
                         ))}
                     </div>
                 </div>
-            ))
+            )) : (
+                <p className="text-lg">Invalid post code entered.</p>
+            )
 
             }
         </div>

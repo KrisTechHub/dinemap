@@ -20,7 +20,7 @@ export interface Restaurant {
     logoUrl: string
 };
 
-export const RESTO_API = "api/discovery/uk/restaurants/enriched/bypostcode/G38AG";
+export const RESTO_API = "api/discovery/uk/restaurants/enriched/bypostcode";
 
 export const fetchRestoData = async(postcode: string): Promise<Restaurant[]> => {
     try {
