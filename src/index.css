@@ -4,7 +4,7 @@ html,
 body, 
 #root, 
 .app {
-  background-color: gainsboro;
+  /* background-color: gainsboro; */
   height: 100%;
   width: 100%;
 }

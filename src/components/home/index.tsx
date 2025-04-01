@@ -1,8 +1,9 @@
 
+
 const Home = () => {
   return (
-    <div className="flex justify-start items-start bg-orange-50 rounded-2xl">
-        <h1 className="text-amber-800 text-2xl font-bold">Restaurants:</h1>
+    <div className="flex justify-start items-center bg-amber-700 text-white rounded-2xl px-4 h-12">
+        <h1 className="text-xl font-medium">Restaurants around post code G38AG</h1>
     </div>
   )
 }

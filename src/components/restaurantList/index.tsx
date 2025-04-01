@@ -21,17 +21,33 @@ const RestaurantList = () => {
     })
 
     return (
-        <div>
-            <h2>Restaurants</h2>
-
+        <div className="bg-gray-50 p-6">
             {error && 
                 <p className="text-red-600"> {error} </p>
             }
 
             { restaurants && restaurants.slice(0, 10).map((resto) => (
-                <div key={resto.id}>
-                    <h4> {resto.name} </h4>
+                <div key={resto.id} className="bg-amber-50 m-4 rounded-xl hover:bg-amber-50/90 border-1 border-gray-200 hover:cursor-pointer">
                     <div>
+
+                    </div>
+
+                    <div className="flex">
+                        <div className="flex">
+                            <img src={resto.logoUrl} className="h-12" alt="" />
+                            <h4 className="font-bold"> {resto.name} </h4>
+                        </div>
+                        <div className="flex gap-1">
+                            <p> {resto.rating.starRating} </p>
+                            <p> {resto.rating.starRating > 0 && `(${resto.rating.count})`} </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        {`${resto.address.firstLine}, ${resto.address.city}`}
+                    </div>
+
+                    <div className="flex">
                         {resto.cuisines.map((cuisine, idx) => (
                             <div key={idx}>
                                 <p> {cuisine.name} </p>

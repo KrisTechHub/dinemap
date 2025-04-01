@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='mx-64'>
         <Home />
         <RestaurantList />
       </div>

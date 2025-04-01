@@ -16,10 +16,11 @@ export interface Restaurant {
         city: string;
         firstLine: string;
         postalCode: string;
-    }
+    };
+    logoUrl: string
 };
 
-export const RESTO_API = "https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/G38AG";
+export const RESTO_API = "api/discovery/uk/restaurants/enriched/bypostcode/G38AG";
 
 export const fetchRestoData = async(): Promise<Restaurant[]> => {
     try {
