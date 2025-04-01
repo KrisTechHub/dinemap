@@ -3,6 +3,7 @@ import Home from './components/home';
 import RestaurantList from './components/restaurantList';
 
 function App() {
+  
 
   return (
     <>

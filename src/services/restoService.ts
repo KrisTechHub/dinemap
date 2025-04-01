@@ -22,9 +22,9 @@ export interface Restaurant {
 
 export const RESTO_API = "api/discovery/uk/restaurants/enriched/bypostcode/G38AG";
 
-export const fetchRestoData = async(): Promise<Restaurant[]> => {
+export const fetchRestoData = async(postcode: string): Promise<Restaurant[]> => {
     try {
-        const response = await axios.get(RESTO_API);
+        const response = await axios.get(`${RESTO_API}/${postcode}`);
         // console.log(response.data.restaurants);
         return response.data.restaurants;
     } catch (error) {
