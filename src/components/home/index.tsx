@@ -1,4 +1,4 @@
-import { Bars3Icon, UserIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, UserIcon, ShoppingCartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 type HomeProps = {
@@ -26,12 +26,14 @@ const Home: React.FC<HomeProps> = ({ postcode, setPostcode }) => {
                 <h1 className="text-xl font-medium">Restaurants around {postcode} </h1>
                 <form onSubmit={handleSubmit}>
                     <input type="text"  onChange={handleInputChange} placeholder="Enter postcode" className="px-1 border-1 border-gray-50 rounded-md w-30"  />
-                    <button>Search</button>
+                    <MagnifyingGlassIcon className="w-7" />
                 </form>
             </div>
         </div>
-        <UserIcon className="w-7" />
-        <ShoppingCartIcon className="w-7" />
+       <div className="flex">
+            <UserIcon className="w-7" />
+            <ShoppingCartIcon className="w-7" />
+       </div>
 
         {/* <select className="text-black" name="postcode" id="postcode" value={postcode} onChange={handleSubmit}>postcode
             <option value="CT12EH">CT12EH</option>
