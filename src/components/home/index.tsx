@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({ postcode, setPostcode }) => {
         </div>
        <div className="flex gap-2">
             <form onSubmit={handleSubmit} className="flex gap-1">
-                <input type="text"  onChange={handleInputChange} placeholder="Postcode" className="px-1 border-1 border-gray-50 rounded-md w-20"  />
+                <input type="text"  onChange={handleInputChange} placeholder="Postcode" className="px-1 border-1 border-gray-50 rounded-md ps-1.5 w-20"  />
                 <MagnifyingGlassIcon className="w-7" />
             </form>
             <UserIcon className="w-7" />

@@ -1,6 +1,5 @@
 import { Restaurant } from "../../services/restoService";
 import { StarIcon } from "@heroicons/react/24/solid";
-import img from "../../../src/assets/restoImage4.jpg";
 
 type RestaurantListProps = {
     restaurants: Restaurant[];
@@ -15,7 +14,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) =
     };
 
     return (
-        <div className="bg-gray-50 p-6">
+        <div className="bg-gray-50 p-6 flex flex-col">
             {error && 
                 <p className="text-red-600"> {error} </p>
             }
@@ -28,18 +27,20 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) =
                         <img className="w-full h-full object-cover object-center rounded-t-xl" src={imgUrl} alt="" />
                     </div>
 
-                    <div className="flex justify-between px-6 py-3">
-                        <div className="flex justify-center items-center gap-3">
+                    <div className="flex px-5 py-3 ">
+                        <div className="flex items-center gap-4 w-full">
                             <img src={resto.logoUrl} className="h-12" alt="" />
-                            <div className="flex flex-col items-start">
-                                <h4 className="font-medium text-xl"> {resto.name.length > 40 ? `${resto.name.slice(0, 37)}...` : resto.name} </h4>
+                            <div className="w-full text-start">
+                                <div className="flex justify-between">
+                                    <h4 className="font-medium text-xl"> {resto.name.length > 40 ? `${resto.name.slice(0, 37)}...` : resto.name} </h4>
+                                    <div className="flex gap-1 items-center">
+                                        <StarIcon className="h-5 text-amber-400" />
+                                        <p> {resto.rating.starRating} </p>
+                                        <p> {resto.rating.starRating > 0 && `(${resto.rating.count})`} </p>
+                                    </div>
+                                </div>
                                 {`${resto.address.firstLine}, ${resto.address.city}`}
                             </div>
-                        </div>
-                        <div className="flex gap-1 items-center">
-                            <StarIcon className="h-5 text-amber-400" />
-                            <p> {resto.rating.starRating} </p>
-                            <p> {resto.rating.starRating > 0 && `(${resto.rating.count})`} </p>
                         </div>
                     </div>
 
