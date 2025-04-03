@@ -1,6 +1,6 @@
 import { Restaurant } from "../../services/restoService";
 import { StarIcon } from "@heroicons/react/24/solid";
-import img from "../../../src/assets/restoImage4.jpg"
+import img from "../../../src/assets/restoImage4.jpg";
 
 type RestaurantListProps = {
     restaurants: Restaurant[];
@@ -9,16 +9,23 @@ type RestaurantListProps = {
 
 const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) => {
 
+    const getRandomNum = () => {
+        const randomNum = Math.floor(Math.random() * 18 ) + 1;
+        return `../../../src/assets/restoImage${randomNum}.jpg`
+    };
+
     return (
         <div className="bg-gray-50 p-6">
             {error && 
                 <p className="text-red-600"> {error} </p>
             }
 
-            { restaurants.length > 0 ? restaurants.slice(0, 10).map((resto) => (
+            { restaurants.length > 0 ? restaurants.slice(0, 10).map((resto) => {
+                const imgUrl = getRandomNum();
+                return (
                 <div key={resto.id} className="bg-white m-4 rounded-xl hover:bg-gray-50/20 border-1 border-gray-200 hover:cursor-pointer">
                     <div className="h-48 overflow-hidden">
-                        <img className="w-full h-full object-cover object-center rounded-t-xl" src={img} alt="" />
+                        <img className="w-full h-full object-cover object-center rounded-t-xl" src={imgUrl} alt="" />
                     </div>
 
                     <div className="flex justify-between px-6 py-3">
@@ -37,21 +44,21 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) =
                     </div>
 
                     <div className="flex px-6 gap-1 pb-4">
-                        <p className="font-medium">Cuisines: </p>
+                        <p className="font-medium">Available: </p>
                         <div className="flex gap-2 ">
+                            
                             {resto.cuisines.map((cuisine, idx) => (
-                                <div key={idx} className="bg-gray-100 rounded-md">
-                                    <p className="italic"> {cuisine.name} </p>
+                                <div key={idx} className="bg-gray-100 rounded-sm">
+                                    <p className="italic px-1"> {cuisine.name} </p>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
-            )) : (
+                )}
+            ) : (
                 <p className="text-lg">Invalid post code entered.</p>
-            )
-
-            }
+            )}
         </div>
     )
 }
