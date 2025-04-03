@@ -1,5 +1,6 @@
 import { Restaurant } from "../../services/restoService";
 import { StarIcon } from "@heroicons/react/24/solid";
+import img from "../../../src/assets/restoImage4.jpg"
 
 type RestaurantListProps = {
     restaurants: Restaurant[];
@@ -15,15 +16,18 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) =
             }
 
             { restaurants.length > 0 ? restaurants.slice(0, 10).map((resto) => (
-                <div key={resto.id} className="bg-white p-6 m-4 rounded-xl hover:bg-gray-50/20 border-1 border-gray-200 hover:cursor-pointer">
-                    <div>
-
+                <div key={resto.id} className="bg-white m-4 rounded-xl hover:bg-gray-50/20 border-1 border-gray-200 hover:cursor-pointer">
+                    <div className="h-48 overflow-hidden">
+                        <img className="w-full h-full object-cover object-center rounded-t-xl" src={img} alt="" />
                     </div>
 
-                    <div className="flex justify-between">
+                    <div className="flex justify-between px-6 py-3">
                         <div className="flex justify-center items-center gap-3">
                             <img src={resto.logoUrl} className="h-12" alt="" />
-                            <h4 className="font-medium text-xl"> {resto.name} </h4>
+                            <div className="flex flex-col items-start">
+                                <h4 className="font-medium text-xl"> {resto.name.length > 40 ? `${resto.name.slice(0, 37)}...` : resto.name} </h4>
+                                {`${resto.address.firstLine}, ${resto.address.city}`}
+                            </div>
                         </div>
                         <div className="flex gap-1 items-center">
                             <StarIcon className="h-5 text-amber-400" />
@@ -32,17 +36,15 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) =
                         </div>
                     </div>
 
-                    <div>
-                        {`${resto.address.firstLine}, ${resto.address.city}`}
-                    </div>
-
-                    <div className="flex">
-                        <p>Cuisines:</p>
-                        {resto.cuisines.map((cuisine, idx) => (
-                            <div key={idx}>
-                                <p> {cuisine.name} </p>
-                            </div>
-                        ))}
+                    <div className="flex px-6 gap-1 pb-4">
+                        <p className="font-medium">Cuisines: </p>
+                        <div className="flex gap-2 ">
+                            {resto.cuisines.map((cuisine, idx) => (
+                                <div key={idx} className="bg-gray-100 rounded-md">
+                                    <p className="italic"> {cuisine.name} </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )) : (
