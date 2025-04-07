@@ -1,5 +1,5 @@
 Build procedure
-1. Download code, open, and input command npm run dev on source code editor terminal
+1. Download code, open, and input command "npm run dev" on source code editor terminal.
 
 
 

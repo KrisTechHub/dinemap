@@ -4,9 +4,10 @@ import { StarIcon } from "@heroicons/react/24/solid";
 type RestaurantListProps = {
     restaurants: Restaurant[];
     error: string;
+    loading: boolean;
 }
 
-const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) => {
+const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error, loading }) => {
 
     const getRandomNum = () => {
         const randomNum = Math.floor(Math.random() * 18 ) + 1;
@@ -15,11 +16,14 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) =
 
     return (
         <div className="bg-gray-50 p-6 flex flex-col">
-            {error && 
+            {loading &&
+                <p className="text-lg">Loading...</p>
+            }
+            {!loading && error && 
                 <p className="text-red-600"> {error} </p>
             }
 
-            { restaurants.length > 0 ? restaurants.slice(0, 10).map((resto) => {
+            { !loading && restaurants.length > 0 ? restaurants.slice(0, 10).map((resto) => {
                 const imgUrl = getRandomNum();
                 return (
                 <div key={resto.id} className="bg-white m-4 rounded-xl hover:bg-gray-50/20 border-1 border-gray-200 hover:cursor-pointer">
@@ -57,9 +61,11 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error }) =
                     </div>
                 </div>
                 )}
-            ) : (
+            ) : !loading && !error ? (
                 <p className="text-lg">Invalid post code entered.</p>
-            )}
+            ): null }
+
+
         </div>
     )
 }
