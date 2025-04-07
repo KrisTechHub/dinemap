@@ -1,5 +1,5 @@
-import { Bars3Icon, UserIcon, ShoppingCartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { UserIcon, ShoppingBagIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useEffect, useState } from "react";
 
 type HomeProps = {
     postcode: string;
@@ -7,7 +7,11 @@ type HomeProps = {
 }
 
 const Home: React.FC<HomeProps> = ({ postcode, setPostcode }) => {
-    const [ inputValue, setInputValue ] = useState(postcode) 
+    const [ inputValue, setInputValue ] = useState(postcode);
+
+    useEffect(() => {
+        setInputValue("");
+    }, [postcode]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
@@ -21,39 +25,26 @@ const Home: React.FC<HomeProps> = ({ postcode, setPostcode }) => {
   return (
     <div className="flex justify-between items-center bg-amber-700 text-white rounded-lg px-4 gap-3 min-h-14">
         <div className="flex gap-2 ">
-            <Bars3Icon className="w-8" />
+            <UserIcon className="w-7 cursor-pointer" />
             <div className="flex gap-4">
                 <h1 className="text-xl font-medium">Restaurants around {postcode} </h1>
             </div>
         </div>
        <div className="flex gap-2">
             <form onSubmit={handleSubmit} className="flex gap-1">
-                <input type="text"  onChange={handleInputChange} placeholder="Postcode" className="px-1 border-1 border-gray-50 rounded-md ps-1.5 w-20"  />
-                <MagnifyingGlassIcon className="w-7" />
+                <input type="text" 
+                    value={inputValue} 
+                    onChange={handleInputChange} 
+                    placeholder="Postcode" 
+                    className="px-1 border-1 border-gray-50 rounded-md ps-1.5 w-20"  
+                />
+                <button type="submit">
+                    <MagnifyingGlassIcon className="w-7 cursor-pointer" />
+                </button>
             </form>
-            <UserIcon className="w-7" />
-            <ShoppingCartIcon className="w-7" />
+            <ShoppingBagIcon className="w-7 cursor-pointer" />
        </div>
 
-        {/* <select className="text-black" name="postcode" id="postcode" value={postcode} onChange={handleSubmit}>postcode
-            <option value="CT12EH">CT12EH</option>
-            <option value="SW1A1AA">SW1A1AA</option>
-            <option value="CT12EH">CT12EH</option>
-            <option value="BN11AE">BN11AE</option>
-            <option value="PL40DW">PL40DW</option>
-            <option value="BS14DJ">BS14DJ</option>
-            <option value="CF118AZ">CF118AZ</option>
-            <option value="CB74DL">CB74DL</option>
-            <option value="B263QJ">B263QJ</option>
-            <option value="L40TH">L40TH</option>
-            <option value="M160RA">M160RA</option>
-            <option value="LS27HY">LS27HY</option>
-            <option value="DH45QZ">DH45QZ</option>
-            <option value="NE97TY">NE97TY</option>
-            <option value="EH11RE">EH11RE</option>
-            <option value="BT71NN">BT71NN</option>
-            
-        </select> */}
     </div>
   )
 }

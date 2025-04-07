@@ -49,7 +49,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants, error, loa
                     </div>
 
                     <div className="flex px-6 gap-1 pb-4">
-                        <p className="font-medium">Available: </p>
+                        <p className="font-medium">Deals: </p>
                         <div className="flex gap-2 ">
                             
                             {resto.cuisines.map((cuisine, idx) => (
